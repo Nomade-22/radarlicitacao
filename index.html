@@ -58,33 +58,23 @@
       padding:12px 0;
       gap:12px;
     }
+
+    /* ✅ Brand do topo agora usa logo "largo" */
     .brand{
       display:flex; align-items:center; gap:12px;
-      min-width:240px;
+      min-width:260px;
     }
-
-    .logo-img{
-      width: 36px;
-      height: 36px;
+    .logo-wide{
+      height: 38px;              /* altura do topo */
+      width: auto;               /* mantém proporção */
       object-fit: contain;
-      border-radius: 12px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: 0 12px 24px rgba(42,167,255,.10);
+      display:block;
+      filter: drop-shadow(0 10px 22px rgba(0,0,0,.35));
+      opacity:.98;
       flex:0 0 auto;
     }
-
-    .brand h1{
-      font-size:15px; margin:0; line-height:1.1;
-      letter-spacing:.2px;
-    }
-    .brand small{
-      display:block;
-      margin-top:2px;
-      color:var(--muted2);
-      font-weight:600;
-      font-size:12px;
-    }
+    /* remove o texto do topo (pra ficar só a marca) */
+    .brand-text{display:none;}
 
     .nav-links{
       display:flex; gap:18px; align-items:center;
@@ -208,7 +198,7 @@
       margin-top: 10px;
     }
 
-    /* ✅ Benefícios dentro da coluna ESQUERDA (área amarela) */
+    /* ✅ Benefícios dentro da coluna ESQUERDA */
     .benefits-in-hero{
       margin-top: 18px;
       display:grid;
@@ -437,25 +427,27 @@
     input:focus{border-color: rgba(42,167,255,.35)}
     .note{color: var(--muted2); font-size:12px; font-weight:650; line-height:1.45; margin-top:8px}
 
-    /* Responsive */
     @media (max-width: 980px){
       .hero-grid{grid-template-columns: 1fr; gap:16px}
       .nav-links{display:none}
       .hero h2{font-size:34px}
       .shots{grid-template-columns: 1fr}
       .benefits-in-hero .two-pages{grid-template-columns: 1fr}
+      .logo-wide{height:34px}
     }
   </style>
 </head>
 
 <body>
 
+  <!-- NAV -->
   <div class="nav">
     <div class="wrap">
       <div class="nav-inner">
-        <a class="brand" href="#topo">
-          <img class="logo-img" src="logo-radar.png" alt="Radar Licitações">
-          <div>
+        <!-- ✅ TOPO agora com logo "vermelho" -->
+        <a class="brand" href="#topo" aria-label="Radar Licitações">
+          <img class="logo-wide" src="logo-radar.png" alt="Radar Licitações">
+          <div class="brand-text">
             <h1>Radar <span style="color:var(--green)">Licitações</span></h1>
             <small>Busca inteligente em licitações</small>
           </div>
@@ -474,6 +466,7 @@
     </div>
   </div>
 
+  <!-- HERO -->
   <header class="hero" id="topo">
     <div class="wrap">
       <div class="hero-grid">
@@ -498,7 +491,6 @@
             <a class="btn" href="https://radarlicitacao.mocha.app/" target="_blank" rel="noopener">Abrir sistema</a>
           </div>
 
-          <!-- ✅ AQUI fica o que estava embaixo (vermelho) -->
           <div class="benefits-in-hero" id="beneficios">
             <div class="two-pages">
               <div class="page">
@@ -664,7 +656,6 @@
     backdrop.addEventListener("click", (e)=>{ if(e.target === backdrop) closeLead(); });
     document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeLead(); });
 
-    // WhatsApp
     const SEU_WHATSAPP = "5551999999999"; // troque: país+DDD+número (sem espaços)
 
     $("#btnEnviar").addEventListener("click", ()=>{
@@ -684,7 +675,6 @@ Interesse: conhecer o sistema e valores.`;
       closeLead();
     });
 
-    // Scroll suave
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener("click", (e)=>{
         const id = a.getAttribute("href");
