@@ -55,27 +55,26 @@
     }
     .nav-inner{
       display:flex; align-items:center; justify-content:space-between;
-      padding:12px 0; /* ✅ barra menor */
+      padding:12px 0;
       gap:12px;
       position:relative;
     }
 
-    /* ✅ Logo grande sem aumentar a barra */
     .brand{
       position:relative;
-      height:48px;         /* ✅ altura real da barra */
+      height:48px;
       min-width:200px;
       display:flex;
       align-items:center;
     }
     .logo-wide{
-      height:96px;         /* ✅ logo maior */
+      height:96px;
       width:auto;
       object-fit:contain;
       display:block;
       flex:0 0 auto;
 
-      position:absolute;   /* ✅ flutua sem esticar a barra */
+      position:absolute;
       left:0;
       top:50%;
       transform:translateY(-50%);
@@ -120,7 +119,7 @@
       box-shadow: 0 0 0 6px rgba(74,214,109,.12);
     }
 
-    /* ✅ Botão Kiwify (Garanta já o seu) */
+    /* Botão Kiwify */
     .btn.buy{
       border:1px solid rgba(74,214,109,.35);
       background: linear-gradient(90deg, rgba(34,197,94,.90), rgba(16,185,129,.85));
@@ -291,25 +290,8 @@
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .showcase .top{
-      padding:14px 16px 0;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .chips{display:flex; gap:8px; flex-wrap:wrap}
-    .chip{
-      font-size:12px; font-weight:900;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color: var(--muted);
-    }
-    .chip strong{color:var(--text)}
 
+    /* ✅ removido: .showcase .top (chips + v0.1) */
     .shots{
       padding:16px;
       display:grid;
@@ -333,14 +315,9 @@
       font-weight:900;
       font-size:13px;
       display:flex;
-      justify-content:space-between;
+      justify-content:flex-start; /* ✅ sem o nome do arquivo */
       align-items:center;
       gap:10px;
-    }
-    .shot .cap span{
-      color: var(--muted2);
-      font-weight:800;
-      font-size:11px;
     }
 
     .media{
@@ -449,7 +426,6 @@
       .shots{grid-template-columns: 1fr}
       .benefits-in-hero .two-pages{grid-template-columns: 1fr}
 
-      /* ✅ mobile: barra menor e logo ainda grande */
       .brand{height:44px; min-width:160px;}
       .logo-wide{height:64px;}
       .nav-inner{padding:10px 0;}
@@ -479,7 +455,6 @@
             <span class="dot"></span> Solicitar acesso
           </button>
 
-          <!-- ✅ NOVO BOTAO KIWIIFY -->
           <a class="btn buy" href="https://pay.kiwify.com.br/36iotAM" target="_blank" rel="noopener">
             <span class="bolt"></span> Garanta já o seu
           </a>
@@ -507,10 +482,6 @@
           <div class="hero-actions">
             <a class="btn primary" href="#prints"><span class="dot"></span> Ver telas do sistema</a>
             <a class="btn" href="https://radarlicitacao.mocha.app/" target="_blank" rel="noopener">Abrir sistema</a>
-            <!-- opcional: comprar também aqui (se quiser, deixo ligado) -->
-            <a class="btn buy" href="https://pay.kiwify.com.br/36iotAM" target="_blank" rel="noopener">
-              <span class="bolt"></span> Garanta já o seu
-            </a>
           </div>
 
           <div class="benefits-in-hero" id="beneficios">
@@ -555,7 +526,6 @@
                   <span class="dot"></span> Solicitar acesso
                 </button>
 
-                <!-- ✅ NOVO BOTAO KIWIIFY (CTA) -->
                 <a class="btn buy" href="https://pay.kiwify.com.br/36iotAM" target="_blank" rel="noopener">
                   <span class="bolt"></span> Garanta já o seu
                 </a>
@@ -565,18 +535,11 @@
         </div>
 
         <div class="showcase" id="prints">
-          <div class="top">
-            <div class="chips">
-              <div class="chip"><strong>RS</strong> agora • Brasil em breve</div>
-              <div class="chip">Filtros avançados</div>
-              <div class="chip">Botão “Abrir licitação”</div>
-            </div>
-            <div style="color:var(--muted2); font-weight:900; font-size:12px">v0.1</div>
-          </div>
+          <!-- ✅ REMOVIDO: chips + v0.1 -->
 
           <div class="shots">
             <div class="shot">
-              <div class="cap">Dashboard <span>sistema-1.png</span></div>
+              <div class="cap">Dashboard</div>
               <div class="media">
                 <img src="sistema-1.png" alt="Tela Dashboard"
                      onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';">
@@ -588,7 +551,7 @@
             </div>
 
             <div class="shot">
-              <div class="cap">Buscar <span>sistema-2.png</span></div>
+              <div class="cap">Buscar</div>
               <div class="media">
                 <img src="sistema-2.png" alt="Tela Buscar"
                      onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';">
@@ -600,7 +563,7 @@
             </div>
 
             <div class="shot">
-              <div class="cap">Mapa <span>sistema-3.png</span></div>
+              <div class="cap">Mapa</div>
               <div class="media">
                 <img src="sistema-3.png" alt="Tela Mapa"
                      onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';">
@@ -612,7 +575,7 @@
             </div>
 
             <div class="shot">
-              <div class="cap">Importação <span>sistema-4.png</span></div>
+              <div class="cap">Importação</div>
               <div class="media">
                 <img src="sistema-4.png" alt="Tela Importação"
                      onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';">
