@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Radar Licitações — Busca inteligente em licitações</title>
+  <meta name="description" content="Radar Licitações: encontre oportunidades de licitações com filtros, alertas e organização por região/UF. Simples, rápido e profissional." />
+  <meta name="theme-color" content="#0b1f3a" />
+
+  <!-- Fonte (opcional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#071427;
+      --panel:#0a1d35;
+      --panel2:#0d2a4d;
+      --text:#eaf1ff;
+      --muted:#b9c7e6;
+      --muted2:#8aa0c9;
+      --line:rgba(255,255,255,.10);
+      --shadow: 0 20px 55px rgba(0,0,0,.45);
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+
+      --blue:#2aa7ff;
+      --blue2:#2f6bff;
+      --green:#4ad66d;
+
+      --radius:18px;
+      --radius2:26px;
+
+      --max:1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 25% 0%, rgba(42,167,255,.15), transparent 55%),
+                  radial-gradient(900px 450px at 80% 10%, rgba(74,214,109,.10), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,20,39,.72);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width:240px;
+    }
+
+    /* >>> LOGO REAL (imagem) */
+    .logo-img{
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 16px 30px rgba(42,167,255,.12);
+      flex:0 0 auto;
+    }
+
+    .brand h1{
+      font-size:16px; margin:0; line-height:1.1;
+      letter-spacing:.2px;
+    }
+    .brand small{
+      display:block;
+      margin-top:2px;
+      color:var(--muted2);
+      font-weight:500;
+      font-size:12px;
+    }
+
+    .nav-links{
+      display:flex; gap:18px; align-items:center;
+      color:var(--muted);
+      font-weight:600;
+      font-size:13px;
+    }
+    .nav-links a{opacity:.95}
+    .nav-links a:hover{color:var(--text)}
+    .nav-cta{
+      display:flex; gap:10px; align-items:center;
+    }
+
+    .btn{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:14px;
+      font-weight:700;
+      font-size:13px;
+      display:inline-flex; align-items:center; gap:10px;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.16)}
+    .btn.primary{
+      border-color: rgba(74,214,109,.35);
+      background: linear-gradient(90deg, rgba(47,107,255,.85), rgba(42,167,255,.85));
+      box-shadow: 0 18px 45px rgba(47,107,255,.22);
+    }
+    .btn.primary:hover{filter:brightness(1.05)}
+    .btn .dot{
+      width:9px; height:9px; border-radius:999px; background: var(--green);
+      box-shadow: 0 0 0 6px rgba(74,214,109,.12);
+    }
+
+    /* HERO (layout tipo imagem) */
+    .hero{
+      position:relative;
+      padding:46px 0 24px;
+      background:
+        radial-gradient(700px 420px at 10% 25%, rgba(42,167,255,.25), transparent 60%),
+        radial-gradient(720px 440px at 85% 25%, rgba(74,214,109,.18), transparent 62%),
+        linear-gradient(180deg, rgba(10,29,53,1), rgba(7,20,39,1));
+      border-bottom:1px solid var(--line);
+      overflow:hidden;
+    }
+    .hero:before{
+      /* círculos “radar” */
+      content:"";
+      position:absolute; inset:-140px -120px auto -120px;
+      height:520px;
+      background:
+        radial-gradient(circle, rgba(255,255,255,.12) 1px, transparent 2px) 0 0 / 42px 42px,
+        radial-gradient(circle at 40% 40%, rgba(255,255,255,.0) 35%, rgba(255,255,255,.08) 36%, transparent 37%),
+        radial-gradient(circle at 40% 40%, rgba(255,255,255,.0) 52%, rgba(255,255,255,.07) 53%, transparent 54%),
+        radial-gradient(circle at 40% 40%, rgba(255,255,255,.0) 70%, rgba(255,255,255,.06) 71%, transparent 72%);
+      opacity:.35;
+      transform: rotate(-8deg);
+      pointer-events:none;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:22px;
+      align-items:center;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:7px 10px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-weight:700;
+      font-size:12px;
+      width: fit-content;
+    }
+    .kicker .pulse{
+      width:10px;height:10px;border-radius:999px;
+      background: var(--green);
+      box-shadow: 0 0 0 0 rgba(74,214,109,.35);
+      animation: pulse 1.6s infinite;
+    }
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(74,214,109,.35)}
+      70%{box-shadow:0 0 0 12px rgba(74,214,109,0)}
+      100%{box-shadow:0 0 0 0 rgba(74,214,109,0)}
+    }
+
+    /* >>> LOGO GRANDE NO HERO */
+    .hero-logo{
+      width: min(520px, 92%);
+      height: auto;
+      display:block;
+      margin: 12px 0 10px;
+      filter: drop-shadow(0 18px 45px rgba(0,0,0,.55));
+    }
+
+    .hero h2{
+      margin:10px 0 10px;
+      font-size:44px;
+      line-height:1.05;
+      letter-spacing:-.6px;
+    }
+    .hero h2 .hl{
+      background: linear-gradient(90deg, rgba(42,167,255,1), rgba(74,214,109,1));
+      -webkit-background-clip: text; background-clip:text;
+      color: transparent;
+    }
+    .hero p{
+      margin:0 0 18px;
+      color: var(--muted);
+      font-size:15.5px;
+      line-height:1.55;
+      max-width: 54ch;
+    }
+    .hero-actions{
+      display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+      margin-top: 10px;
+    }
+    .hero-actions .hint{
+      color: var(--muted2);
+      font-size:12px;
+      font-weight:600;
+    }
+
+    /* cartão “kit visual” / mock */
+    .showcase{
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .showcase .top{
+      padding:16px 16px 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .chips{
+      display:flex; gap:8px; flex-wrap:wrap;
+    }
+    .chip{
+      font-size:12px; font-weight:800;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+    }
+    .chip strong{color:var(--text)}
+    .showcase .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      padding:16px;
+      align-items:stretch;
+    }
+    .card{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(7,20,39,.55);
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow: var(--shadow2);
+      position:relative;
+      min-height:150px;
+    }
+    .card .cap{
+      display:flex; align-items:center; gap:10px;
+      padding:14px 14px 10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+      font-weight:800;
+      font-size:12px;
+      letter-spacing:.2px;
+    }
+    .ic{
+      width:28px; height:28px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(47,107,255,.9), rgba(42,167,255,.35));
+      border:1px solid rgba(255,255,255,.12);
+      display:grid; place-items:center;
+    }
+    .ic svg{opacity:.95}
+    .card .body{
+      padding:14px;
+      color: var(--text);
+    }
+
+    /* >>> Caixa com imagem (substitui placeholder) */
+    .imgbox{
+      height:120px;
+      border-radius:16px;
+      background: rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.10);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+    .imgbox img{
+      width: 92%;
+      height: 92%;
+      object-fit: contain;
+    }
+
+    .mini{
+      display:flex; gap:10px; align-items:center;
+    }
+    .mini .badge{
+      width:44px; height:44px;
+      border-radius:16px;
+      background: radial-gradient(circle at 30% 30%, rgba(42,167,255,.95), rgba(47,107,255,.55));
+      border:1px solid rgba(255,255,255,.10);
+      position:relative;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .mini .badge:before{
+      content:"";
+      position:absolute; inset:-8px;
+      background:
+        radial-gradient(circle, transparent 35%, rgba(255,255,255,.20) 36%, transparent 38%) 50% 50% / 90% 90% no-repeat,
+        conic-gradient(from 210deg, rgba(255,255,255,.0), rgba(255,255,255,.25), rgba(255,255,255,0));
+      opacity:.9;
+    }
+    .mini .t{
+      display:flex; flex-direction:column; gap:2px;
+    }
+    .mini .t b{font-size:13px}
+    .mini .t span{font-size:12px; color:var(--muted2); font-weight:600}
+
+    /* SECTIONS */
+    section{padding:54px 0}
+    .sec-title{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
+      margin-bottom:18px;
+    }
+    .sec-title h3{
+      margin:0;
+      font-size:22px;
+      letter-spacing:-.2px;
+    }
+    .sec-title p{
+      margin:0;
+      color: var(--muted);
+      font-weight:600;
+      font-size:13px;
+      max-width: 60ch;
+    }
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .feat{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: var(--shadow2);
+      min-height: 150px;
+    }
+    .feat h4{
+      margin:10px 0 8px;
+      font-size:14.5px;
+      letter-spacing:.1px;
+    }
+    .feat p{
+      margin:0;
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.55;
+      font-weight:600;
+    }
+
+    .how{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:14px;
+      align-items:stretch;
+    }
+
+    .steps{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius2);
+      padding:16px;
+      box-shadow: var(--shadow2);
+    }
+    .step{
+      display:flex; gap:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(7,20,39,.45);
+      margin-bottom:10px;
+    }
+    .step:last-child{margin-bottom:0}
+    .n{
+      width:34px; height:34px; border-radius:14px;
+      display:grid; place-items:center;
+      font-weight:900;
+      background: linear-gradient(135deg, rgba(42,167,255,.95), rgba(74,214,109,.25));
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .step b{display:block; font-size:13px}
+    .step span{display:block; color:var(--muted); font-size:12.5px; font-weight:600; margin-top:2px}
+
+    .pricing{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      align-items:stretch;
+    }
+    .plan{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius2);
+      padding:18px;
+      box-shadow: var(--shadow2);
+      position:relative;
+      overflow:hidden;
+    }
+    .plan.popular{
+      background:
+        radial-gradient(400px 180px at 50% 0%, rgba(42,167,255,.25), transparent 60%),
+        rgba(255,255,255,.05);
+      border-color: rgba(42,167,255,.25);
+      box-shadow: 0 28px 70px rgba(42,167,255,.12);
+    }
+    .tag{
+      position:absolute; top:14px; right:14px;
+      font-size:11px;
+      font-weight:900;
+      padding:7px 10px;
+      border-radius:999px;
+      background: rgba(74,214,109,.18);
+      border:1px solid rgba(74,214,109,.30);
+      color: var(--text);
+    }
+    .plan h4{margin:0 0 6px; font-size:14.5px}
+    .price{
+      font-size:30px;
+      font-weight:900;
+      letter-spacing:-.6px;
+      margin:8px 0 6px;
+    }
+    .price small{
+      font-size:12px;
+      font-weight:800;
+      color: var(--muted2);
+      letter-spacing:0;
+    }
+    .plan p{margin:0 0 12px; color:var(--muted); font-size:13px; font-weight:600; line-height:1.55}
+    .ul{
+      margin:0; padding:0; list-style:none;
+      display:flex; flex-direction:column; gap:8px;
+      color: var(--muted);
+      font-size:13px;
+      font-weight:650;
+    }
+    .ul li{display:flex; gap:10px; align-items:flex-start}
+    .check{
+      width:18px; height:18px; border-radius:6px;
+      background: rgba(74,214,109,.18);
+      border:1px solid rgba(74,214,109,.30);
+      display:grid; place-items:center; flex:0 0 auto;
+      margin-top:1px;
+    }
+    .plan .btn{width:100%; justify-content:center; margin-top:14px}
+
+    .faq{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    details{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius2);
+      padding:14px 16px;
+      box-shadow: var(--shadow2);
+    }
+    summary{
+      cursor:pointer;
+      font-weight:850;
+      color: var(--text);
+      list-style:none;
+      display:flex; justify-content:space-between; align-items:center;
+      gap:12px;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{
+      margin:10px 0 0;
+      color: var(--muted);
+      font-weight:600;
+      font-size:13px;
+      line-height:1.55;
+    }
+
+    /* FOOTER */
+    footer{
+      border-top:1px solid var(--line);
+      padding:28px 0;
+      color: var(--muted2);
+      font-weight:650;
+      font-size:12px;
+    }
+    .foot{
+      display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+      align-items:center;
+    }
+    .foot a{color:var(--muted)}
+    .foot a:hover{color:var(--text)}
+
+    /* MODAL */
+    .backdrop{
+      position:fixed; inset:0; z-index:100;
+      background: rgba(0,0,0,.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+    .modal{
+      width:min(520px, 100%);
+      background: rgba(7,20,39,.92);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .modal .hd{
+      padding:16px 16px 12px;
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .modal .hd b{font-size:14px}
+    .x{
+      width:38px; height:38px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      cursor:pointer;
+      font-weight:900;
+    }
+    .modal .bd{padding:16px}
+    .field{
+      display:flex; flex-direction:column; gap:8px;
+      margin-bottom:12px;
+    }
+    label{font-size:12px; font-weight:800; color:var(--muted)}
+    input{
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      outline:none;
+      font-weight:650;
+    }
+    input:focus{border-color: rgba(42,167,255,.35)}
+    .note{
+      color: var(--muted2);
+      font-size:12px;
+      font-weight:650;
+      line-height:1.45;
+      margin-top:8px;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns: 1fr; gap:16px}
+      .showcase .grid{grid-template-columns: 1fr}
+      .how{grid-template-columns: 1fr}
+      .grid3{grid-template-columns: 1fr}
+      .pricing{grid-template-columns: 1fr}
+      .faq{grid-template-columns: 1fr}
+      .nav-links{display:none}
+      .brand{min-width:auto}
+      .hero h2{font-size:34px}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="wrap">
+      <div class="nav-inner">
+        <a class="brand" href="#topo">
+          <!-- >>> SUA IMAGEM AQUI (coloque em assets/logo-radar.png) -->
+          <img class="logo-img" src="assets/logo-radar.png" alt="Radar Licitações">
+          <div>
+            <h1>Radar <span style="color:var(--green)">Licitações</span></h1>
+            <small>Busca inteligente em licitações</small>
+          </div>
+        </a>
+
+        <div class="nav-links" aria-label="Navegação">
+          <a href="#beneficios">Benefícios</a>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#planos">Planos</a>
+          <a href="#faq">Dúvidas</a>
+        </div>
+
+        <div class="nav-cta">
+          <a class="btn" href="SEU_LINK_AQUI" target="_blank" rel="noopener">
+            Acessar demo
+          </a>
+          <button class="btn primary" id="btnLead">
+            <span class="dot"></span> Quero acesso
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" id="topo">
+    <div class="wrap">
+      <div class="hero-grid">
+
+        <div>
+          <!-- >>> LOGO GRANDE NO HERO -->
+          <img class="hero-logo" src="assets/logo-radar.png" alt="Radar Licitações">
+
+          <div class="kicker"><span class="pulse" aria-hidden="true"></span> Oportunidades em segundos • Organização profissional</div>
+
+          <h2>
+            Encontre <span class="hl">licitações abertas</span> com clareza, filtros e alertas.
+          </h2>
+          <p>
+            O Radar Licitações centraliza as oportunidades, melhora a busca por UF/município/segmento e te leva direto ao edital.
+            Ideal para empresas que querem ganhar tempo e não perder prazos.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#planos">
+              <span class="dot"></span> Ver planos
+            </a>
+            <a class="btn" href="#como-funciona">Como funciona</a>
+            <span class="hint">Sem complicação • Layout corporativo • Pronto pro GitHub Pages</span>
+          </div>
+        </div>
+
+        <div class="showcase" aria-label="Apresentação visual">
+          <div class="top">
+            <div class="chips">
+              <div class="chip"><strong>RS</strong> agora • Brasil em breve</div>
+              <div class="chip">Filtros avançados</div>
+              <div class="chip">Botão “Abrir licitação”</div>
+            </div>
+            <div style="color:var(--muted2); font-weight:800; font-size:12px">v0.1</div>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <div class="cap">
+                <div class="ic" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 20a8 8 0 1 0-8-8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M12 12l6-6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M18 6h-4" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                Marca / Logo
+              </div>
+              <div class="body">
+                <div class="imgbox">
+                  <img src="assets/logo-radar.png" alt="Radar Licitações">
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="cap">
+                <div class="ic" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 7h16M4 12h10M4 17h16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                Prévia do sistema
+              </div>
+              <div class="body">
+                <div class="mini">
+                  <div class="badge" aria-hidden="true"></div>
+                  <div class="t">
+                    <b>Tela de busca + resultados</b>
+                    <span>Lista com botão “Abrir” e filtros por UF</span>
+                  </div>
+                </div>
+                <div style="height:10px"></div>
+
+                <!-- Se tiver um print do sistema, troque para assets/app.png -->
+                <div class="imgbox" style="height:120px">
+                  <div style="color:var(--muted2); font-weight:800; font-size:12px; padding:12px; text-align:center">
+                    Coloque um print do app em <br><b>assets/app.png</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="grid-column:1/-1">
+              <div class="cap">
+                <div class="ic" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 20V4" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M20 20V10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M4 16h16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M8 16V8h4v8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 16v-5h3v5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                Proposta de valor (rápida)
+              </div>
+              <div class="body" style="display:grid; gap:10px; grid-template-columns:1fr 1fr 1fr">
+                <div class="feat" style="min-height:auto">
+                  <h4>Busca rápida</h4>
+                  <p>Filtre por UF, município, modalidade e palavras-chave.</p>
+                </div>
+                <div class="feat" style="min-height:auto">
+                  <h4>Organização</h4>
+                  <p>Resultados claros com ações: abrir edital, salvar e compartilhar.</p>
+                </div>
+                <div class="feat" style="min-height:auto">
+                  <h4>Alertas</h4>
+                  <p>Receba avisos de novas oportunidades no seu segmento.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- BENEFÍCIOS -->
+  <section id="beneficios">
+    <div class="wrap">
+      <div class="sec-title">
+        <div>
+          <h3>Por que o Radar Licitações?</h3>
+          <p>Menos tempo procurando, mais tempo preparando proposta.</p>
+        </div>
+        <div style="color:var(--muted2); font-weight:800; font-size:12px">Foco em performance</div>
+      </div>
+
+      <div class="grid3">
+        <div class="feat">
+          <div class="ic" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              <path d="M3 12h18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h4>Clareza nos resultados</h4>
+          <p>Lista objetiva com status, órgão, cidade/UF, datas e acesso ao edital.</p>
+        </div>
+
+        <div class="feat">
+          <div class="ic" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M12 21s7-4.35 7-10a7 7 0 1 0-14 0c0 5.65 7 10 7 10Z" stroke="white" stroke-width="2"/>
+              <path d="M12 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="white" stroke-width="2"/>
+            </svg>
+          </div>
+          <h4>Filtro por região/UF</h4>
+          <p>Comece por RS e evolua para cobertura nacional com o mesmo padrão.</p>
+        </div>
+
+        <div class="feat">
+          <div class="ic" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M4 4h16v16H4z" stroke="white" stroke-width="2"/>
+              <path d="M7 7h10M7 12h10M7 17h6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h4>Centralização e histórico</h4>
+          <p>Salve buscas, acompanhe oportunidades e mantenha registro do que foi visto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section id="como-funciona">
+    <div class="wrap">
+      <div class="sec-title">
+        <div>
+          <h3>Como funciona</h3>
+          <p>Um fluxo simples para você encontrar e abrir licitações em poucos cliques.</p>
+        </div>
+      </div>
+
+      <div class="how">
+        <div class="steps">
+          <div class="step">
+            <div class="n">1</div>
+            <div>
+              <b>Escolha UF e filtros</b>
+              <span>Defina RS (inicial), palavras-chave e modalidade.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="n">2</div>
+            <div>
+              <b>Veja a lista organizada</b>
+              <span>Resultados com dados essenciais e destaque para prazos.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="n">3</div>
+            <div>
+              <b>Abra o edital</b>
+              <span>Um botão “Abrir licitação” para ir direto à fonte.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="feat" style="padding:18px; border-radius:var(--radius2)">
+          <h4 style="margin:0 0 10px; font-size:16px">Pronto para vender como produto</h4>
+          <p>
+            Use esta página como pré-sell: capta lead, explica valor e direciona para demo/checkout.
+            Você pode conectar depois com WhatsApp, formulário ou sistema de pagamento.
+          </p>
+          <div style="height:12px"></div>
+          <div class="imgbox" style="height:140px">
+            <div style="color:var(--muted2); font-weight:800; font-size:12px; padding:12px; text-align:center">
+              Se quiser um banner igual ao mockup, coloque em <br><b>assets/banner.png</b>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section id="planos">
+    <div class="wrap">
+      <div class="sec-title">
+        <div>
+          <h3>Planos</h3>
+          <p>Você pode começar simples e evoluir. Ajuste preços e benefícios como quiser.</p>
+        </div>
+      </div>
+
+      <div class="pricing">
+        <div class="plan">
+          <h4>Start</h4>
+          <div class="price">R$ 39 <small>/mês</small></div>
+          <p>Para testar o fluxo e começar a monitorar oportunidades.</p>
+          <ul class="ul">
+            <li><span class="check">✓</span> Busca por UF (RS)</li>
+            <li><span class="check">✓</span> Filtro por palavra-chave</li>
+            <li><span class="check">✓</span> Botão abrir licitação</li>
+          </ul>
+          <button class="btn" data-open-lead>Quero esse</button>
+        </div>
+
+        <div class="plan popular">
+          <span class="tag">Mais escolhido</span>
+          <h4>Pro</h4>
+          <div class="price">R$ 79 <small>/mês</small></div>
+          <p>Mais filtros e organização para equipes e rotina comercial.</p>
+          <ul class="ul">
+            <li><span class="check">✓</span> Filtros avançados (modalidade/órgão)</li>
+            <li><span class="check">✓</span> Favoritos e histórico</li>
+            <li><span class="check">✓</span> Alertas básicos</li>
+          </ul>
+          <button class="btn primary" data-open-lead><span class="dot"></span>Quero o Pro</button>
+        </div>
+
+        <div class="plan">
+          <h4>Enterprise</h4>
+          <div class="price">Sob consulta</div>
+          <p>Para operação maior: múltiplas UFs, integrações e suporte.</p>
+          <ul class="ul">
+            <li><span class="check">✓</span> Cobertura nacional</li>
+            <li><span class="check">✓</span> Integrações e relatórios</li>
+            <li><span class="check">✓</span> Suporte prioritário</li>
+          </ul>
+          <a class="btn" href="SEU_LINK_AQUI" target="_blank" rel="noopener">Falar com vendas</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-title">
+        <div>
+          <h3>Dúvidas comuns</h3>
+          <p>Se quiser, eu ajusto o texto para o seu público (construção civil, manutenção, etc.).</p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>Isso funciona no celular? <span style="color:var(--muted2)">+</span></summary>
+          <p>Sim. A página é responsiva e fica boa em mobile e desktop.</p>
+        </details>
+        <details>
+          <summary>Posso colocar meu logo e as imagens da marca? <span style="color:var(--muted2)">+</span></summary>
+          <p>Sim. Basta colocar as imagens em <b>assets/</b> e substituir os caminhos.</p>
+        </details>
+        <details>
+          <summary>Tem captura de lead? <span style="color:var(--muted2)">+</span></summary>
+          <p>Tem um formulário simples (modal). Ele abre um link pronto para WhatsApp ou e-mail — sem backend.</p>
+        </details>
+        <details>
+          <summary>Como eu ligo isso no meu app depois? <span style="color:var(--muted2)">+</span></summary>
+          <p>Troque <code>SEU_LINK_AQUI</code> pelo link do seu app (GitHub Pages / Mocha / sistema final).</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>© <span id="year"></span> Radar Licitações • Todos os direitos reservados.</div>
+        <div style="display:flex; gap:14px; flex-wrap:wrap">
+          <a href="#topo">Topo</a>
+          <a href="#beneficios">Benefícios</a>
+          <a href="#planos">Planos</a>
+          <a href="SEU_LINK_AQUI" target="_blank" rel="noopener">Demo</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL Lead -->
+  <div class="backdrop" id="backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="leadTitle">
+      <div class="hd">
+        <b id="leadTitle">Quero acesso ao Radar Licitações</b>
+        <button class="x" id="btnClose" aria-label="Fechar">✕</button>
+      </div>
+      <div class="bd">
+        <div class="field">
+          <label for="nome">Nome</label>
+          <input id="nome" placeholder="Seu nome" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input id="email" placeholder="seuemail@empresa.com" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="whats">WhatsApp</label>
+          <input id="whats" placeholder="(51) 99999-9999" inputmode="tel">
+        </div>
+
+        <button class="btn primary" id="btnEnviar">
+          <span class="dot"></span> Enviar pedido
+        </button>
+
+        <div class="note">
+          Sem backend: ao enviar, você será direcionado para um link (WhatsApp ou e-mail) com a mensagem pronta.
+          Depois você pode integrar com um formulário real (Google Forms, CRM, etc.).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const $ = (s)=>document.querySelector(s);
+    const $$ = (s)=>document.querySelectorAll(s);
+
+    // Ano no rodapé
+    $("#year").textContent = new Date().getFullYear();
+
+    // Modal
+    const backdrop = $("#backdrop");
+    const openLead = ()=>{ backdrop.style.display="flex"; backdrop.setAttribute("aria-hidden","false"); };
+    const closeLead = ()=>{ backdrop.style.display="none"; backdrop.setAttribute("aria-hidden","true"); };
+
+    $("#btnLead").addEventListener("click", openLead);
+    $("#btnClose").addEventListener("click", closeLead);
+    backdrop.addEventListener("click", (e)=>{ if(e.target === backdrop) closeLead(); });
+    document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeLead(); });
+
+    $$("[data-open-lead]").forEach(b=> b.addEventListener("click", openLead));
+
+    // Envio: WhatsApp ou Email
+    const SEU_WHATSAPP = "5551999999999"; // <-- troque: país+DDD+número (sem espaços)
+    const SEU_EMAIL = "contato@radarlicitacoes.com"; // <-- troque
+
+    $("#btnEnviar").addEventListener("click", ()=>{
+      const nome = ($("#nome").value || "").trim();
+      const email = ($("#email").value || "").trim();
+      const whats = ($("#whats").value || "").trim();
+
+      const msg =
+`Olá! Quero acesso ao Radar Licitações.
+Nome: ${nome || "-"}
+E-mail: ${email || "-"}
+WhatsApp: ${whats || "-"}
+Interesse: conhecer planos e demo.`;
+
+      // WhatsApp (recomendado)
+      const urlWpp = "https://wa.me/" + SEU_WHATSAPP + "?text=" + encodeURIComponent(msg);
+
+      // Email (alternativa)
+      const urlMail = "mailto:" + encodeURIComponent(SEU_EMAIL)
+        + "?subject=" + encodeURIComponent("Pedido de acesso — Radar Licitações")
+        + "&body=" + encodeURIComponent(msg);
+
+      // >>> Escolha aqui qual abrir:
+      window.open(urlWpp, "_blank");
+      // window.location.href = urlMail;
+
+      closeLead();
+    });
+
+    // Scroll suave para âncoras
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener("click", (e)=>{
+        const id = a.getAttribute("href");
+        if(!id || id === "#") return;
+        const el = document.querySelector(id);
+        if(!el) return;
+        e.preventDefault();
+        el.scrollIntoView({behavior:"smooth", block:"start"});
+      });
+    });
+  </script>
+
+</body>
+</html>
