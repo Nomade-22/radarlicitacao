@@ -150,7 +150,7 @@
       display:grid;
       grid-template-columns: 1.05fr .95fr;
       gap:22px;
-      align-items:center;
+      align-items:start;
     }
 
     /* Logo menor no HERO */
@@ -209,11 +209,6 @@
       display:flex; gap:12px; align-items:center; flex-wrap:wrap;
       margin-top: 10px;
     }
-    .hero-actions .hint{
-      color: var(--muted2);
-      font-size:12px;
-      font-weight:700;
-    }
 
     /* Showcase (prints do sistema) */
     .showcase{
@@ -256,7 +251,7 @@
       box-shadow: var(--shadow2);
       display:flex;
       flex-direction:column;
-      min-height: 280px;
+      min-height: 290px;
     }
     .shot .cap{
       padding:12px 14px;
@@ -275,7 +270,7 @@
       font-size:11px;
     }
 
-    /* >>> Efeito de zoom-out no hover (imagem começa um pouco aproximada e afasta ao passar o mouse) */
+    /* Zoom-out no hover */
     .media{
       position:relative;
       height: 220px;
@@ -308,7 +303,6 @@
       font-size:12px;
     }
 
-    /* texto embaixo da imagem */
     .desc{
       padding:12px 14px 14px;
       color: var(--muted);
@@ -317,37 +311,24 @@
       font-weight:650;
     }
 
-    /* Sections */
-    section{padding:56px 0}
-    .sec-title{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
-      margin-bottom:18px;
+    /* ✅ CARDS logo abaixo do HERO (juntinho) */
+    .hero-below{
+      margin-top: 14px;
+      padding-bottom: 18px;
     }
-    .sec-title h3{
-      margin:0;
-      font-size:22px;
-      letter-spacing:-.2px;
-    }
-    .sec-title p{
-      margin:0;
-      color: var(--muted);
-      font-weight:650;
-      font-size:13px;
-      max-width: 70ch;
-      line-height:1.5;
-    }
-
-    .two-pages{
+    .hero-below .two-pages{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:14px;
       align-items:stretch;
     }
+
+    /* Pages (cards) */
     .page{
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
       border-radius: var(--radius2);
-      padding:18px;
+      padding:16px;
       box-shadow: var(--shadow2);
       overflow:hidden;
     }
@@ -381,7 +362,9 @@
       font-weight:900;
     }
 
+    /* CTA */
     .cta{
+      margin-top:14px;
       border:1px solid rgba(255,255,255,.10);
       background:
         radial-gradient(520px 220px at 10% 0%, rgba(42,167,255,.20), transparent 60%),
@@ -406,6 +389,7 @@
       color: var(--muted2);
       font-weight:650;
       font-size:12px;
+      margin-top: 10px;
     }
     .foot{
       display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
@@ -466,8 +450,9 @@
       .nav-links{display:none}
       .hero h2{font-size:34px}
       .shots{grid-template-columns: 1fr}
-      .two-pages{grid-template-columns: 1fr}
+      .hero-below .two-pages{grid-template-columns: 1fr}
       .media{height: 230px}
+      .hero-below{margin-top:10px}
     }
   </style>
 </head>
@@ -488,11 +473,11 @@
 
         <div class="nav-links" aria-label="Navegação">
           <a href="#prints">Sistema</a>
-          <a href="#explicacoes">Explicações</a>
+          <a href="#explicacoes">Benefícios</a>
         </div>
 
         <div class="nav-cta">
-          <a class="btn" href="SEU_LINK_AQUI" target="_blank" rel="noopener">Acessar sistema</a>
+          <a class="btn" href="https://radarlicitacao.mocha.app/" target="_blank" rel="noopener">Acessar sistema</a>
           <button class="btn primary" id="btnLead"><span class="dot"></span> Solicitar acesso</button>
         </div>
       </div>
@@ -510,7 +495,8 @@
           <div class="kicker"><span class="pulse" aria-hidden="true"></span> Oportunidades em segundos • Organização profissional</div>
 
           <h2>
-            Encontre <span class="hl">licitações abertas</span> com mais clareza e menos esforço.
+            Encontre <span class="hl">licitações abertas</span><br>
+            com mais clareza e menos esforço.
           </h2>
           <p>
             O Radar Licitações organiza as oportunidades em uma lista objetiva, com filtros por UF e ação direta para abrir cada licitação.
@@ -535,61 +521,49 @@
           </div>
 
           <div class="shots">
-            <!-- Tela 1 -->
             <div class="shot">
               <div class="cap">Dashboard <span>sistema-1.png</span></div>
-
               <div class="media">
                 <img src="sistema-1.png" alt="Tela Dashboard"
                      onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';">
               </div>
               <div class="ph">Envie a imagem <b>sistema-1.png</b> para a raiz do repositório.</div>
-
               <div class="desc">
                 Visão geral das licitações: indicadores, últimas atualizações e atalhos rápidos para abrir oportunidades e acompanhar status.
               </div>
             </div>
 
-            <!-- Tela 2 -->
             <div class="shot">
               <div class="cap">Buscar <span>sistema-2.png</span></div>
-
               <div class="media">
                 <img src="sistema-2.png" alt="Tela Buscar"
                      onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';">
               </div>
               <div class="ph">Envie a imagem <b>sistema-2.png</b> para a raiz do repositório.</div>
-
               <div class="desc">
                 Busca inteligente com filtros: palavra-chave, órgão, modalidade e datas — resultados claros com botão “Abrir licitação”.
               </div>
             </div>
 
-            <!-- Tela 3 -->
             <div class="shot">
               <div class="cap">Mapa <span>sistema-3.png</span></div>
-
               <div class="media">
                 <img src="sistema-3.png" alt="Tela Mapa"
                      onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';">
               </div>
               <div class="ph">Envie a imagem <b>sistema-3.png</b> para a raiz do repositório.</div>
-
               <div class="desc">
                 Selecione um ponto no mapa e visualize licitações por proximidade, facilitando operações regionais e logística.
               </div>
             </div>
 
-            <!-- Tela 4 -->
             <div class="shot">
               <div class="cap">Importação <span>sistema-4.png</span></div>
-
               <div class="media">
                 <img src="sistema-4.png" alt="Tela Importação"
                      onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';">
               </div>
               <div class="ph">Envie a imagem <b>sistema-4.png</b> para a raiz do repositório.</div>
-
               <div class="desc">
                 Importe dados e atualize listas com facilidade (ex.: CSV/planilhas), mantendo o sistema sempre atualizado para busca e análise.
               </div>
@@ -598,53 +572,54 @@
         </div>
 
       </div>
+
+      <!-- ✅ BENEFÍCIOS (cards) AGORA AQUI (embaixo do HERO, juntinho) -->
+      <div class="hero-below" id="explicacoes">
+        <div class="two-pages">
+
+          <div class="page">
+            <h4>O que o Radar Licitações resolve</h4>
+            <p>
+              Em vez de abrir vários portais e pesquisar manualmente, o Radar Licitações centraliza e organiza oportunidades
+              em uma lista clara, com as informações essenciais e acesso rápido ao edital.
+            </p>
+            <ul class="bul">
+              <li><span class="check">✓</span> Busca mais rápida por UF/município/termos</li>
+              <li><span class="check">✓</span> Resultados organizados (prazo, órgão, modalidade)</li>
+              <li><span class="check">✓</span> Clique direto para “Abrir licitação”</li>
+              <li><span class="check">✓</span> Vários tipos de filtros (inclui termos mais buscados)</li>
+            </ul>
+          </div>
+
+          <div class="page">
+            <h4>Como isso ajuda sua empresa</h4>
+            <p>
+              Você ganha tempo e evita perder prazos. O sistema facilita a rotina comercial: encontrar oportunidades,
+              filtrar as melhores e partir para a proposta com mais segurança e agilidade.
+            </p>
+            <ul class="bul">
+              <li><span class="check">✓</span> Menos tempo procurando, mais tempo preparando proposta</li>
+              <li><span class="check">✓</span> Padronização do processo (equipe/rotina)</li>
+              <li><span class="check">✓</span> Visão clara das oportunidades ativas</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="cta">
+          <div>
+            <b>Quer acesso ao Radar Licitações?</b><br>
+            <span>Clique em “Solicitar acesso” e envie sua mensagem no WhatsApp (sem backend).</span>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn" href="https://radarlicitacao.mocha.app/" target="_blank" rel="noopener">Acessar sistema</a>
+            <button class="btn primary" id="btnLead2"><span class="dot"></span> Solicitar acesso</button>
+          </div>
+        </div>
+
+      </div>
     </div>
   </header>
-
-      <div class="two-pages">
-        <div class="page">
-          <h4> O que o Radar Licitações resolve</h4>
-          <p>
-            Em vez de abrir vários portais e pesquisar manualmente, o Radar Licitações centraliza e organiza oportunidades
-            em uma lista clara, com as informações essenciais e acesso rápido ao edital.
-          </p>
-          <ul class="bul">
-            <li><span class="check">✓</span> Busca mais rápida por UF/município/termos</li>
-            <li><span class="check">✓</span> Resultados organizados (prazo, órgão, modalidade)</li>
-            <li><span class="check">✓</span> Clique direto para “Abrir licitação”</li>
-            <li><span class="check">✓</span> Varios tipos de filtros inclusive palavras mais buscadas”</li>
-          </ul>
-        </div>
-
-        <div class="page">
-          <h4> Como isso ajuda sua empresa</h4>
-          <p>
-            Você ganha tempo e evita perder prazos. O sistema facilita a rotina comercial: encontrar oportunidades,
-            filtrar as melhores e partir para a proposta com mais segurança e agilidade.
-          </p>
-          <ul class="bul">
-            <li><span class="check">✓</span> Menos tempo procurando, mais tempo preparando proposta</li>
-            <li><span class="check">✓</span> Padronização do processo (equipe/rotina)</li>
-            <li><span class="check">✓</span> Visão clara das oportunidades ativas</li>
-          </ul>
-        </div>
-      </div>
-
-      <div style="height:14px"></div>
-
-      <div class="cta">
-        <div>
-          <b>Quer acesso ao Radar Licitações?</b><br>
-          <span>Clique em “Solicitar acesso” e envie sua mensagem no WhatsApp (sem backend).</span>
-        </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn" href="SEU_LINK_AQUI" target="_blank" rel="noopener">Acessar sistema</a>
-          <button class="btn primary" id="btnLead2"><span class="dot"></span> Solicitar acesso</button>
-        </div>
-      </div>
-
-    </div>
-  </section>
 
   <!-- FOOTER -->
   <footer>
@@ -654,7 +629,7 @@
         <div style="display:flex; gap:14px; flex-wrap:wrap">
           <a href="#topo">Topo</a>
           <a href="#prints">Sistema</a>
-          <a href="#explicacoes">Explicações</a>
+          <a href="#explicacoes">Benefícios</a>
         </div>
       </div>
     </div>
