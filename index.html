@@ -55,24 +55,27 @@
     }
     .nav-inner{
       display:flex; align-items:center; justify-content:space-between;
-      padding:18px 0; /* ✅ mais alto pra caber o logo grande */
+      padding:12px 0; /* ✅ NÃO aumenta a barra */
       gap:12px;
     }
 
-    /* ✅ Logo do topo MAIOR (tamanho do quadrado vermelho) */
+    /* ✅ Logo do topo MAIOR sem aumentar a barra */
     .brand{
       display:flex; align-items:center;
       gap:12px;
       min-width: 360px;
     }
     .logo-wide{
-      height: 124px; /* ✅ AQUI: logo bem maior */
+      height: 124px; /* ✅ logo grande */
       width: auto;
       object-fit: contain;
       display:block;
       filter: drop-shadow(0 16px 30px rgba(0,0,0,.45));
       opacity:.99;
       flex:0 0 auto;
+
+      position: relative; /* ✅ “invade” pra baixo sem crescer a barra */
+      top: 10px;          /* ajuste fino: 6px a 14px */
     }
 
     .nav-links{
@@ -418,15 +421,16 @@
     input:focus{border-color: rgba(42,167,255,.35)}
     .note{color: var(--muted2); font-size:12px; font-weight:650; line-height:1.45; margin-top:8px}
 
-    /* ✅ Mobile ajustado para o logo grande */
+    /* ✅ Mobile: mantém a barra normal, só o logo “invade” */
     @media (max-width: 980px){
       .hero-grid{grid-template-columns: 1fr; gap:16px}
       .nav-links{display:none}
       .hero h2{font-size:34px}
       .shots{grid-template-columns: 1fr}
       .benefits-in-hero .two-pages{grid-template-columns: 1fr}
-      .logo-wide{height:64px} /* ✅ maior no mobile também */
-      .nav-inner{padding:14px 0}
+
+      .nav-inner{padding:12px 0} /* ✅ barra normal */
+      .logo-wide{height:64px; top:6px} /* ✅ logo maior e “desce” */
       .brand{min-width: 260px}
     }
   </style>
