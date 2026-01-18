@@ -55,22 +55,22 @@
     }
     .nav-inner{
       display:flex; align-items:center; justify-content:space-between;
-      padding:12px 0;
+      padding:18px 0; /* ✅ mais alto pra caber o logo grande */
       gap:12px;
     }
 
-    /* ✅ Logo do topo MAIOR */
+    /* ✅ Logo do topo MAIOR (tamanho do quadrado vermelho) */
     .brand{
       display:flex; align-items:center;
       gap:12px;
       min-width: 360px;
     }
     .logo-wide{
-      height: 56px;              /* 👈 aumentou (era 38) */
+      height: 84px; /* ✅ AQUI: logo bem maior */
       width: auto;
       object-fit: contain;
       display:block;
-      filter: drop-shadow(0 14px 28px rgba(0,0,0,.40));
+      filter: drop-shadow(0 16px 30px rgba(0,0,0,.45));
       opacity:.99;
       flex:0 0 auto;
     }
@@ -418,13 +418,15 @@
     input:focus{border-color: rgba(42,167,255,.35)}
     .note{color: var(--muted2); font-size:12px; font-weight:650; line-height:1.45; margin-top:8px}
 
+    /* ✅ Mobile ajustado para o logo grande */
     @media (max-width: 980px){
       .hero-grid{grid-template-columns: 1fr; gap:16px}
       .nav-links{display:none}
       .hero h2{font-size:34px}
       .shots{grid-template-columns: 1fr}
       .benefits-in-hero .two-pages{grid-template-columns: 1fr}
-      .logo-wide{height:46px}
+      .logo-wide{height:64px} /* ✅ maior no mobile também */
+      .nav-inner{padding:14px 0}
       .brand{min-width: 260px}
     }
   </style>
@@ -435,7 +437,6 @@
   <div class="nav">
     <div class="wrap">
       <div class="nav-inner">
-        <!-- ✅ Logo grande no topo -->
         <a class="brand" href="#topo" aria-label="Radar Licitações">
           <img class="logo-wide" src="logo-radar.png" alt="Radar Licitações">
         </a>
@@ -458,7 +459,6 @@
       <div class="hero-grid">
 
         <div>
-          <!-- ✅ Logo do HERO removido -->
           <div class="kicker"><span class="pulse" aria-hidden="true"></span> Oportunidades em segundos • Organização profissional</div>
 
           <h2>
