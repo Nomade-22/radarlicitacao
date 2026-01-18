@@ -371,6 +371,70 @@
       font-weight:650;
     }
 
+    /* ✅ Seção TRIAL no final */
+    .trial{
+      margin-top: 18px;
+      padding: 26px 0 6px;
+      border-top: 1px solid var(--line);
+      background:
+        radial-gradient(720px 320px at 20% 0%, rgba(74,214,109,.12), transparent 60%),
+        radial-gradient(720px 320px at 80% 0%, rgba(42,167,255,.10), transparent 60%);
+    }
+    .trial-card{
+      border:1px solid rgba(74,214,109,.28);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow2);
+      padding: 18px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 14px;
+      align-items:center;
+    }
+    .trial-card h3{
+      margin: 0 0 6px;
+      font-size: 18px;
+      letter-spacing: -.2px;
+    }
+    .trial-card h3 .price{
+      background: linear-gradient(90deg, rgba(74,214,109,1), rgba(34,197,94,1));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .trial-card p{
+      margin:0;
+      color: var(--muted);
+      font-weight:650;
+      font-size: 12.8px;
+      line-height: 1.5;
+    }
+    .trial-list{
+      margin: 10px 0 0;
+      padding: 0;
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12.6px;
+      font-weight: 650;
+    }
+    .trial-list li{display:flex; gap:10px; align-items:flex-start}
+    .trial-right{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      justify-content:center;
+      align-items:flex-end;
+      text-align:right;
+    }
+    .trial-right small{
+      color: var(--muted2);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
     footer{
       border-top:1px solid var(--line);
       padding:28px 0;
@@ -443,6 +507,9 @@
       .logo-wide{height:64px;}
       .nav-inner{padding:10px 0;}
       .nav-cta{gap:8px; flex-wrap:wrap;}
+
+      .trial-card{grid-template-columns:1fr}
+      .trial-right{align-items:flex-start; text-align:left}
     }
   </style>
 </head>
@@ -459,6 +526,7 @@
         <div class="nav-links" aria-label="Navegação">
           <a href="#prints">Sistema</a>
           <a href="#beneficios">Benefícios</a>
+          <a href="#trial">Teste</a>
         </div>
 
         <div class="nav-cta">
@@ -468,7 +536,7 @@
             <span class="dot"></span> Solicitar acesso
           </button>
 
-          <a class="btn buy" href="https://pay.kiwify.com.br/36iotAM" target="_blank" rel="noopener">
+          <a class="btn buy" id="btnBuyTop" href="https://pay.kiwify.com.br/36iotAM" target="_blank" rel="noopener">
             <span class="bolt"></span> Garanta já o seu
           </a>
         </div>
@@ -539,7 +607,7 @@
                   <span class="dot"></span> Solicitar acesso
                 </button>
 
-                <a class="btn buy" href="https://pay.kiwify.com.br/36iotAM" target="_blank" rel="noopener">
+                <a class="btn buy" id="btnBuyMid" href="https://pay.kiwify.com.br/36iotAM" target="_blank" rel="noopener">
                   <span class="bolt"></span> Garanta já o seu
                 </a>
               </div>
@@ -603,6 +671,42 @@
     </div>
   </header>
 
+  <!-- ✅ OFERTA FINAL (R$ 10 / 7 dias) -->
+  <section class="trial" id="trial">
+    <div class="wrap">
+      <div class="trial-card">
+        <div>
+          <h3>Experimente por <span class="price">R$ 10</span> por 7 dias</h3>
+          <p>
+            Teste o Radar Licitações com acesso completo por 7 dias.
+            <b>Cancelamento automático</b> e <b>garantia de devolução</b>.
+          </p>
+
+          <ul class="trial-list">
+            <li><span class="check">✓</span> Acesso completo ao sistema durante o período</li>
+            <li><span class="check">✓</span> Sem fidelidade</li>
+            <li><span class="check">✓</span> Cancelamento automático ao final do período*</li>
+            <li><span class="check">✓</span> Devolução conforme política do checkout</li>
+          </ul>
+
+          <p style="margin-top:10px; color:var(--muted2); font-size:12px; font-weight:650;">
+            *O cancelamento automático depende da configuração do seu produto/assinatura na Kiwify.
+          </p>
+        </div>
+
+        <div class="trial-right">
+          <a class="btn buy" id="btnTrial" href="https://pay.kiwify.com.br/36iotAM" target="_blank" rel="noopener">
+            <span class="bolt"></span> Testar agora por R$ 10
+          </a>
+          <small>
+            7 dias para testar<br>
+            sem letras miúdas
+          </small>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div class="wrap">
       <div class="foot">
@@ -611,11 +715,13 @@
           <a href="#topo">Topo</a>
           <a href="#prints">Sistema</a>
           <a href="#beneficios">Benefícios</a>
+          <a href="#trial">Teste</a>
         </div>
       </div>
     </div>
   </footer>
 
+  <!-- Modal -->
   <div class="backdrop" id="backdrop" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="leadTitle">
       <div class="hd">
@@ -649,6 +755,7 @@
     const $ = (s)=>document.querySelector(s);
     $("#year").textContent = new Date().getFullYear();
 
+    // Modal
     const backdrop = $("#backdrop");
     const openLead = ()=>{ backdrop.style.display="flex"; backdrop.setAttribute("aria-hidden","false"); };
     const closeLead = ()=>{ backdrop.style.display="none"; backdrop.setAttribute("aria-hidden","true"); };
@@ -659,7 +766,8 @@
     backdrop.addEventListener("click", (e)=>{ if(e.target === backdrop) closeLead(); });
     document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeLead(); });
 
-    const SEU_WHATSAPP = "5551999999999"; // troque: país+DDD+número (sem espaços)
+    // WhatsApp (troque para o seu)
+    const SEU_WHATSAPP = "5551999999999"; // país+DDD+número (sem espaços)
 
     $("#btnEnviar").addEventListener("click", ()=>{
       const nome = ($("#nome").value || "").trim();
@@ -678,6 +786,7 @@ Interesse: conhecer o sistema e valores.`;
       closeLead();
     });
 
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener("click", (e)=>{
         const id = a.getAttribute("href");
@@ -688,6 +797,22 @@ Interesse: conhecer o sistema e valores.`;
         el.scrollIntoView({behavior:"smooth", block:"start"});
       });
     });
+
+    // (Opcional) marcar cliques de compra no GA4
+    function trackBuyClick(where){
+      try{
+        gtag('event', 'buy_click', {
+          event_category: 'checkout',
+          event_label: where
+        });
+      }catch(err){}
+    }
+    const b1 = document.getElementById("btnBuyTop");
+    const b2 = document.getElementById("btnBuyMid");
+    const b3 = document.getElementById("btnTrial");
+    if(b1) b1.addEventListener("click", ()=>trackBuyClick("top_nav"));
+    if(b2) b2.addEventListener("click", ()=>trackBuyClick("mid_cta"));
+    if(b3) b3.addEventListener("click", ()=>trackBuyClick("trial_section"));
   </script>
 
 </body>
