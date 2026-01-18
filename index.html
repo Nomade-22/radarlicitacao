@@ -63,7 +63,6 @@
       min-width:240px;
     }
 
-    /* Logo menor (topo) */
     .logo-img{
       width: 36px;
       height: 36px;
@@ -153,7 +152,6 @@
       align-items:start;
     }
 
-    /* Logo menor no HERO */
     .hero-logo{
       width: min(320px, 90%);
       height:auto;
@@ -209,6 +207,76 @@
       display:flex; gap:12px; align-items:center; flex-wrap:wrap;
       margin-top: 10px;
     }
+
+    /* ✅ Benefícios dentro da coluna ESQUERDA (área amarela) */
+    .benefits-in-hero{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    .benefits-in-hero .two-pages{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      align-items:stretch;
+    }
+    .benefits-in-hero .page{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius2);
+      padding:14px;
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .benefits-in-hero .page h4{
+      margin:0 0 8px;
+      font-size:14px;
+      letter-spacing:-.2px;
+    }
+    .benefits-in-hero .page p{
+      margin:0 0 10px;
+      color: var(--muted);
+      font-weight:650;
+      font-size:12.5px;
+      line-height:1.55;
+    }
+
+    .bul{
+      margin:0; padding:0; list-style:none;
+      display:flex; flex-direction:column; gap:8px;
+      color: var(--muted);
+      font-size:12.6px;
+      font-weight:650;
+    }
+    .bul li{display:flex; gap:10px; align-items:flex-start}
+    .check{
+      width:18px; height:18px; border-radius:6px;
+      background: rgba(74,214,109,.18);
+      border:1px solid rgba(74,214,109,.30);
+      display:grid; place-items:center;
+      flex:0 0 auto;
+      margin-top:1px;
+      font-weight:900;
+    }
+
+    .cta{
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(520px 220px at 10% 0%, rgba(42,167,255,.20), transparent 60%),
+        radial-gradient(520px 220px at 90% 0%, rgba(74,214,109,.16), transparent 60%),
+        rgba(255,255,255,.04);
+      border-radius: var(--radius2);
+      padding:14px;
+      box-shadow: var(--shadow2);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .cta b{font-size:13px}
+    .cta span{color:var(--muted); font-weight:650; font-size:12px}
 
     /* Showcase (prints do sistema) */
     .showcase{
@@ -270,7 +338,6 @@
       font-size:11px;
     }
 
-    /* Zoom-out no hover */
     .media{
       position:relative;
       height: 220px;
@@ -287,9 +354,7 @@
       transition: transform .35s ease;
       will-change: transform;
     }
-    .shot:hover .media img{
-      transform: scale(1.0);
-    }
+    .shot:hover .media img{ transform: scale(1.0); }
 
     .ph{
       height:100%;
@@ -311,78 +376,6 @@
       font-weight:650;
     }
 
-    /* ✅ CARDS logo abaixo do HERO (juntinho) */
-    .hero-below{
-      margin-top: 14px;
-      padding-bottom: 18px;
-    }
-    .hero-below .two-pages{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-      align-items:stretch;
-    }
-
-    /* Pages (cards) */
-    .page{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      border-radius: var(--radius2);
-      padding:16px;
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-    }
-    .page h4{
-      margin:0 0 10px;
-      font-size:16px;
-      letter-spacing:-.2px;
-    }
-    .page p{
-      margin:0 0 12px;
-      color: var(--muted);
-      font-weight:650;
-      font-size:13px;
-      line-height:1.6;
-    }
-    .bul{
-      margin:0; padding:0; list-style:none;
-      display:flex; flex-direction:column; gap:8px;
-      color: var(--muted);
-      font-size:13px;
-      font-weight:650;
-    }
-    .bul li{display:flex; gap:10px; align-items:flex-start}
-    .check{
-      width:18px; height:18px; border-radius:6px;
-      background: rgba(74,214,109,.18);
-      border:1px solid rgba(74,214,109,.30);
-      display:grid; place-items:center;
-      flex:0 0 auto;
-      margin-top:1px;
-      font-weight:900;
-    }
-
-    /* CTA */
-    .cta{
-      margin-top:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:
-        radial-gradient(520px 220px at 10% 0%, rgba(42,167,255,.20), transparent 60%),
-        radial-gradient(520px 220px at 90% 0%, rgba(74,214,109,.16), transparent 60%),
-        rgba(255,255,255,.04);
-      border-radius: var(--radius2);
-      padding:18px;
-      box-shadow: var(--shadow2);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-    .cta b{font-size:14px}
-    .cta span{color:var(--muted); font-weight:650; font-size:13px}
-
-    /* Footer */
     footer{
       border-top:1px solid var(--line);
       padding:28px 0;
@@ -450,16 +443,13 @@
       .nav-links{display:none}
       .hero h2{font-size:34px}
       .shots{grid-template-columns: 1fr}
-      .hero-below .two-pages{grid-template-columns: 1fr}
-      .media{height: 230px}
-      .hero-below{margin-top:10px}
+      .benefits-in-hero .two-pages{grid-template-columns: 1fr}
     }
   </style>
 </head>
 
 <body>
 
-  <!-- NAV -->
   <div class="nav">
     <div class="wrap">
       <div class="nav-inner">
@@ -473,7 +463,7 @@
 
         <div class="nav-links" aria-label="Navegação">
           <a href="#prints">Sistema</a>
-          <a href="#explicacoes">Benefícios</a>
+          <a href="#beneficios">Benefícios</a>
         </div>
 
         <div class="nav-cta">
@@ -484,11 +474,11 @@
     </div>
   </div>
 
-  <!-- HERO -->
   <header class="hero" id="topo">
     <div class="wrap">
       <div class="hero-grid">
 
+        <!-- ESQUERDA -->
         <div>
           <img class="hero-logo" src="logo-radar.png" alt="Radar Licitações">
 
@@ -507,9 +497,52 @@
             <a class="btn primary" href="#prints"><span class="dot"></span> Ver telas do sistema</a>
             <a class="btn" href="https://radarlicitacao.mocha.app/" target="_blank" rel="noopener">Abrir sistema</a>
           </div>
+
+          <!-- ✅ AQUI fica o que estava embaixo (vermelho) -->
+          <div class="benefits-in-hero" id="beneficios">
+            <div class="two-pages">
+              <div class="page">
+                <h4>O que o Radar Licitações resolve</h4>
+                <p>
+                  Em vez de abrir vários portais e pesquisar manualmente, o Radar Licitações centraliza e organiza oportunidades
+                  em uma lista clara, com as informações essenciais e acesso rápido ao edital.
+                </p>
+                <ul class="bul">
+                  <li><span class="check">✓</span> Busca mais rápida por UF/município/termos</li>
+                  <li><span class="check">✓</span> Resultados organizados (prazo, órgão, modalidade)</li>
+                  <li><span class="check">✓</span> Clique direto para “Abrir licitação”</li>
+                  <li><span class="check">✓</span> Vários tipos de filtros (inclui termos mais buscados)</li>
+                </ul>
+              </div>
+
+              <div class="page">
+                <h4>Como isso ajuda sua empresa</h4>
+                <p>
+                  Você ganha tempo e evita perder prazos. O sistema facilita a rotina comercial: encontrar oportunidades,
+                  filtrar as melhores e partir para a proposta com mais segurança e agilidade.
+                </p>
+                <ul class="bul">
+                  <li><span class="check">✓</span> Menos tempo procurando, mais tempo preparando proposta</li>
+                  <li><span class="check">✓</span> Padronização do processo (equipe/rotina)</li>
+                  <li><span class="check">✓</span> Visão clara das oportunidades ativas</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="cta">
+              <div>
+                <b>Quer acesso ao Radar Licitações?</b><br>
+                <span>Clique em “Solicitar acesso” e envie sua mensagem no WhatsApp (sem backend).</span>
+              </div>
+              <div style="display:flex; gap:10px; flex-wrap:wrap">
+                <a class="btn" href="https://radarlicitacao.mocha.app/" target="_blank" rel="noopener">Acessar sistema</a>
+                <button class="btn primary" id="btnLead2"><span class="dot"></span> Solicitar acesso</button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- PRINTS DO SISTEMA -->
+        <!-- DIREITA -->
         <div class="showcase" id="prints">
           <div class="top">
             <div class="chips">
@@ -572,56 +605,9 @@
         </div>
 
       </div>
-
-      <!-- ✅ BENEFÍCIOS (cards) AGORA AQUI (embaixo do HERO, juntinho) -->
-      <div class="hero-below" id="explicacoes">
-        <div class="two-pages">
-
-          <div class="page">
-            <h4>O que o Radar Licitações resolve</h4>
-            <p>
-              Em vez de abrir vários portais e pesquisar manualmente, o Radar Licitações centraliza e organiza oportunidades
-              em uma lista clara, com as informações essenciais e acesso rápido ao edital.
-            </p>
-            <ul class="bul">
-              <li><span class="check">✓</span> Busca mais rápida por UF/município/termos</li>
-              <li><span class="check">✓</span> Resultados organizados (prazo, órgão, modalidade)</li>
-              <li><span class="check">✓</span> Clique direto para “Abrir licitação”</li>
-              <li><span class="check">✓</span> Vários tipos de filtros (inclui termos mais buscados)</li>
-            </ul>
-          </div>
-
-          <div class="page">
-            <h4>Como isso ajuda sua empresa</h4>
-            <p>
-              Você ganha tempo e evita perder prazos. O sistema facilita a rotina comercial: encontrar oportunidades,
-              filtrar as melhores e partir para a proposta com mais segurança e agilidade.
-            </p>
-            <ul class="bul">
-              <li><span class="check">✓</span> Menos tempo procurando, mais tempo preparando proposta</li>
-              <li><span class="check">✓</span> Padronização do processo (equipe/rotina)</li>
-              <li><span class="check">✓</span> Visão clara das oportunidades ativas</li>
-            </ul>
-          </div>
-
-        </div>
-
-        <div class="cta">
-          <div>
-            <b>Quer acesso ao Radar Licitações?</b><br>
-            <span>Clique em “Solicitar acesso” e envie sua mensagem no WhatsApp (sem backend).</span>
-          </div>
-          <div style="display:flex; gap:10px; flex-wrap:wrap">
-            <a class="btn" href="https://radarlicitacao.mocha.app/" target="_blank" rel="noopener">Acessar sistema</a>
-            <button class="btn primary" id="btnLead2"><span class="dot"></span> Solicitar acesso</button>
-          </div>
-        </div>
-
-      </div>
     </div>
   </header>
 
-  <!-- FOOTER -->
   <footer>
     <div class="wrap">
       <div class="foot">
@@ -629,13 +615,12 @@
         <div style="display:flex; gap:14px; flex-wrap:wrap">
           <a href="#topo">Topo</a>
           <a href="#prints">Sistema</a>
-          <a href="#explicacoes">Benefícios</a>
+          <a href="#beneficios">Benefícios</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- MODAL Lead -->
   <div class="backdrop" id="backdrop" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="leadTitle">
       <div class="hd">
@@ -660,16 +645,13 @@
           <span class="dot"></span> Enviar no WhatsApp
         </button>
 
-        <div class="note">
-          Sem backend: ao enviar, abre o WhatsApp com a mensagem pronta.
-        </div>
+        <div class="note">Sem backend: ao enviar, abre o WhatsApp com a mensagem pronta.</div>
       </div>
     </div>
   </div>
 
   <script>
     const $ = (s)=>document.querySelector(s);
-
     $("#year").textContent = new Date().getFullYear();
 
     const backdrop = $("#backdrop");
