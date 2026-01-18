@@ -7,6 +7,20 @@
   <meta name="description" content="Radar Licitações: encontre oportunidades de licitações com filtros, alertas e organização por UF/município. Simples, rápido e profissional." />
   <meta name="theme-color" content="#0b1f3a" />
 
+  <!-- Google tag (gtag.js) - GA4 + Google Ads -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B9PXSXFH73"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    // Google Analytics 4
+    gtag('config', 'G-B9PXSXFH73');
+
+    // Google Ads
+    gtag('config', 'AW-17009434229');
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -282,7 +296,7 @@
     .cta b{font-size:13px}
     .cta span{color:var(--muted); font-weight:650; font-size:12px}
 
-    /* Showcase (prints do sistema) */
+    /* Showcase */
     .showcase{
       background: rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.10);
@@ -291,7 +305,6 @@
       overflow:hidden;
     }
 
-    /* ✅ removido: .showcase .top (chips + v0.1) */
     .shots{
       padding:16px;
       display:grid;
@@ -315,7 +328,7 @@
       font-weight:900;
       font-size:13px;
       display:flex;
-      justify-content:flex-start; /* ✅ sem o nome do arquivo */
+      justify-content:flex-start;
       align-items:center;
       gap:10px;
     }
@@ -535,8 +548,6 @@
         </div>
 
         <div class="showcase" id="prints">
-          <!-- ✅ REMOVIDO: chips + v0.1 -->
-
           <div class="shots">
             <div class="shot">
               <div class="cap">Dashboard</div>
