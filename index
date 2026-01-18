@@ -590,8 +590,8 @@
     <div class="wrap">
       <div class="nav-inner">
         <a class="brand" href="#topo">
-          <!-- >>> SUA IMAGEM AQUI (coloque em assets/logo-radar.png) -->
-          <img class="logo-img" src="assets/logo-radar.png" alt="Radar Licitações">
+          <!-- >>> SUA IMAGEM AQUI (coloque em logo-radar.png) -->
+          <img class="logo-img" src="logo-radar.png" alt="Radar Licitações">
           <div>
             <h1>Radar <span style="color:var(--green)">Licitações</span></h1>
             <small>Busca inteligente em licitações</small>
@@ -624,7 +624,7 @@
 
         <div>
           <!-- >>> LOGO GRANDE NO HERO -->
-          <img class="hero-logo" src="assets/logo-radar.png" alt="Radar Licitações">
+          <img class="hero-logo" src="logo-radar.png" alt="Radar Licitações">
 
           <div class="kicker"><span class="pulse" aria-hidden="true"></span> Oportunidades em segundos • Organização profissional</div>
 
@@ -669,7 +669,7 @@
               </div>
               <div class="body">
                 <div class="imgbox">
-                  <img src="assets/logo-radar.png" alt="Radar Licitações">
+                  <img src="logo-radar.png" alt="Radar Licitações">
                 </div>
               </div>
             </div>
