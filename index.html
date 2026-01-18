@@ -59,22 +59,21 @@
       gap:12px;
     }
 
-    /* ✅ Brand do topo agora usa logo "largo" */
+    /* ✅ Logo do topo MAIOR */
     .brand{
-      display:flex; align-items:center; gap:12px;
-      min-width:260px;
+      display:flex; align-items:center;
+      gap:12px;
+      min-width: 360px;
     }
     .logo-wide{
-      height: 38px;              /* altura do topo */
-      width: auto;               /* mantém proporção */
+      height: 56px;              /* 👈 aumentou (era 38) */
+      width: auto;
       object-fit: contain;
       display:block;
-      filter: drop-shadow(0 10px 22px rgba(0,0,0,.35));
-      opacity:.98;
+      filter: drop-shadow(0 14px 28px rgba(0,0,0,.40));
+      opacity:.99;
       flex:0 0 auto;
     }
-    /* remove o texto do topo (pra ficar só a marca) */
-    .brand-text{display:none;}
 
     .nav-links{
       display:flex; gap:18px; align-items:center;
@@ -114,7 +113,7 @@
     /* HERO */
     .hero{
       position:relative;
-      padding:42px 0 24px;
+      padding:34px 0 24px;
       background:
         radial-gradient(700px 420px at 10% 25%, rgba(42,167,255,.25), transparent 60%),
         radial-gradient(720px 440px at 85% 25%, rgba(74,214,109,.18), transparent 62%),
@@ -142,15 +141,6 @@
       align-items:start;
     }
 
-    .hero-logo{
-      width: min(320px, 90%);
-      height:auto;
-      display:block;
-      margin: 0 0 10px;
-      filter: drop-shadow(0 16px 40px rgba(0,0,0,.55));
-      opacity:.98;
-    }
-
     .kicker{
       display:inline-flex; align-items:center; gap:10px;
       padding:7px 10px;
@@ -161,6 +151,7 @@
       font-weight:800;
       font-size:12px;
       width: fit-content;
+      margin-top: 6px;
     }
     .kicker .pulse{
       width:10px;height:10px;border-radius:999px;
@@ -433,24 +424,20 @@
       .hero h2{font-size:34px}
       .shots{grid-template-columns: 1fr}
       .benefits-in-hero .two-pages{grid-template-columns: 1fr}
-      .logo-wide{height:34px}
+      .logo-wide{height:46px}
+      .brand{min-width: 260px}
     }
   </style>
 </head>
 
 <body>
 
-  <!-- NAV -->
   <div class="nav">
     <div class="wrap">
       <div class="nav-inner">
-        <!-- ✅ TOPO agora com logo "vermelho" -->
+        <!-- ✅ Logo grande no topo -->
         <a class="brand" href="#topo" aria-label="Radar Licitações">
           <img class="logo-wide" src="logo-radar.png" alt="Radar Licitações">
-          <div class="brand-text">
-            <h1>Radar <span style="color:var(--green)">Licitações</span></h1>
-            <small>Busca inteligente em licitações</small>
-          </div>
         </a>
 
         <div class="nav-links" aria-label="Navegação">
@@ -466,15 +453,12 @@
     </div>
   </div>
 
-  <!-- HERO -->
   <header class="hero" id="topo">
     <div class="wrap">
       <div class="hero-grid">
 
-        <!-- ESQUERDA -->
         <div>
-          <img class="hero-logo" src="logo-radar.png" alt="Radar Licitações">
-
+          <!-- ✅ Logo do HERO removido -->
           <div class="kicker"><span class="pulse" aria-hidden="true"></span> Oportunidades em segundos • Organização profissional</div>
 
           <h2>
@@ -534,10 +518,12 @@
           </div>
         </div>
 
-        <!-- DIREITA -->
         <div class="showcase" id="prints">
           <div class="top">
-            <div class="chips">    
+            <div class="chips">
+              <div class="chip"><strong>RS</strong> agora • Brasil em breve</div>
+              <div class="chip">Filtros avançados</div>
+              <div class="chip">Botão “Abrir licitação”</div>
             </div>
             <div style="color:var(--muted2); font-weight:900; font-size:12px">v0.1</div>
           </div>
