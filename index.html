@@ -256,14 +256,14 @@
       box-shadow: var(--shadow2);
       display:flex;
       flex-direction:column;
-      min-height: 220px;
+      min-height: 280px;
     }
     .shot .cap{
       padding:12px 14px;
       border-bottom:1px solid rgba(255,255,255,.08);
-      color: var(--muted);
+      color: var(--text);
       font-weight:900;
-      font-size:12px;
+      font-size:13px;
       display:flex;
       justify-content:space-between;
       align-items:center;
@@ -274,23 +274,47 @@
       font-weight:800;
       font-size:11px;
     }
-    .shot img{
-      width:100%;
-      height: 100%;
-      display:block;
-      object-fit: cover;
+
+    /* >>> Efeito de zoom-out no hover (imagem começa um pouco aproximada e afasta ao passar o mouse) */
+    .media{
+      position:relative;
+      height: 220px;
+      overflow:hidden;
       background: rgba(255,255,255,.03);
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
+    .media img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.07);
+      transition: transform .35s ease;
+      will-change: transform;
+    }
+    .shot:hover .media img{
+      transform: scale(1.0);
+    }
+
     .ph{
-      height: 100%;
+      height:100%;
       padding:22px 16px;
-      display:flex;
+      display:none;
       align-items:center;
       justify-content:center;
       text-align:center;
       color: var(--muted2);
       font-weight:800;
       font-size:12px;
+    }
+
+    /* texto embaixo da imagem */
+    .desc{
+      padding:12px 14px 14px;
+      color: var(--muted);
+      font-size:12.8px;
+      line-height:1.55;
+      font-weight:650;
     }
 
     /* Sections */
@@ -443,6 +467,7 @@
       .hero h2{font-size:34px}
       .shots{grid-template-columns: 1fr}
       .two-pages{grid-template-columns: 1fr}
+      .media{height: 230px}
     }
   </style>
 </head>
@@ -463,7 +488,7 @@
 
         <div class="nav-links" aria-label="Navegação">
           <a href="#prints">Sistema</a>
-          <a href="#explicacoes">Como ajuda</a>
+          <a href="#explicacoes">Explicações</a>
         </div>
 
         <div class="nav-cta">
@@ -495,7 +520,7 @@
           <div class="hero-actions">
             <a class="btn primary" href="#prints"><span class="dot"></span> Ver telas do sistema</a>
             <a class="btn" href="SEU_LINK_AQUI" target="_blank" rel="noopener">Abrir sistema</a>
-            <span class="hint">Pré-sell direto • Visual corporativo • GitHub Pages</span>
+            <span class="hint">Visual corporativo • Pré-sell • GitHub Pages</span>
           </div>
         </div>
 
@@ -511,32 +536,64 @@
           </div>
 
           <div class="shots">
+            <!-- Tela 1 -->
             <div class="shot">
-              <div class="cap">Tela 1 <span>sistema-1.png</span></div>
-              <img src="sistema-1.png" alt="Tela do sistema 1"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-              <div class="ph" style="display:none">Envie a imagem <b>sistema-1.png</b> para a raiz do repositório.</div>
+              <div class="cap">Dashboard <span>sistema-1.png</span></div>
+
+              <div class="media">
+                <img src="sistema-1.png" alt="Tela Dashboard"
+                     onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';">
+              </div>
+              <div class="ph">Envie a imagem <b>sistema-1.png</b> para a raiz do repositório.</div>
+
+              <div class="desc">
+                Visão geral das licitações: indicadores, últimas atualizações e atalhos rápidos para abrir oportunidades e acompanhar status.
+              </div>
             </div>
 
+            <!-- Tela 2 -->
             <div class="shot">
-              <div class="cap">Tela 2 <span>sistema-2.png</span></div>
-              <img src="sistema-2.png" alt="Tela do sistema 2"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-              <div class="ph" style="display:none">Envie a imagem <b>sistema-2.png</b> para a raiz do repositório.</div>
+              <div class="cap">Buscar <span>sistema-2.png</span></div>
+
+              <div class="media">
+                <img src="sistema-2.png" alt="Tela Buscar"
+                     onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';">
+              </div>
+              <div class="ph">Envie a imagem <b>sistema-2.png</b> para a raiz do repositório.</div>
+
+              <div class="desc">
+                Busca inteligente com filtros: palavra-chave, órgão, modalidade e datas — resultados claros com botão “Abrir licitação”.
+              </div>
             </div>
 
+            <!-- Tela 3 -->
             <div class="shot">
-              <div class="cap">Tela 3 <span>sistema-3.png</span></div>
-              <img src="sistema-3.png" alt="Tela do sistema 3"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-              <div class="ph" style="display:none">Envie a imagem <b>sistema-3.png</b> para a raiz do repositório.</div>
+              <div class="cap">Mapa <span>sistema-3.png</span></div>
+
+              <div class="media">
+                <img src="sistema-3.png" alt="Tela Mapa"
+                     onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';">
+              </div>
+              <div class="ph">Envie a imagem <b>sistema-3.png</b> para a raiz do repositório.</div>
+
+              <div class="desc">
+                Selecione um ponto no mapa e visualize licitações por proximidade, facilitando operações regionais e logística.
+              </div>
             </div>
 
+            <!-- Tela 4 -->
             <div class="shot">
-              <div class="cap">Tela 4 <span>sistema-4.png</span></div>
-              <img src="sistema-4.png" alt="Tela do sistema 4"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-              <div class="ph" style="display:none">Envie a imagem <b>sistema-4.png</b> para a raiz do repositório.</div>
+              <div class="cap">Importação <span>sistema-4.png</span></div>
+
+              <div class="media">
+                <img src="sistema-4.png" alt="Tela Importação"
+                     onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';">
+              </div>
+              <div class="ph">Envie a imagem <b>sistema-4.png</b> para a raiz do repositório.</div>
+
+              <div class="desc">
+                Importe dados e atualize listas com facilidade (ex.: CSV/planilhas), mantendo o sistema sempre atualizado para busca e análise.
+              </div>
             </div>
           </div>
         </div>
@@ -550,30 +607,31 @@
     <div class="wrap">
       <div class="sec-title">
         <div>
-          <h3>Duas páginas de explicação</h3>
-          <p>Texto direto para o cliente entender rápido o valor do sistema — sem planos, só um preço/assinatura.</p>
+          <h3>Explicações (2 páginas)</h3>
+          <p>Texto direto para o cliente entender rápido o valor do sistema — sem planos, só um valor/assinatura.</p>
         </div>
       </div>
 
       <div class="two-pages">
         <div class="page">
-          <h4>Página 1 — O que o Radar Licitações resolve</h4>
+          <h4>P O que o Radar Licitações resolve</h4>
           <p>
-            Em vez de ficar abrindo vários portais e pesquisando manualmente, o Radar Licitações centraliza e organiza as oportunidades
-            em uma lista clara, com informações essenciais e botão para abrir cada licitação.
+            Em vez de abrir vários portais e pesquisar manualmente, o Radar Licitações centraliza e organiza oportunidades
+            em uma lista clara, com as informações essenciais e acesso rápido ao edital.
           </p>
           <ul class="bul">
             <li><span class="check">✓</span> Busca mais rápida por UF/município/termos</li>
-            <li><span class="check">✓</span> Lista organizada (prazo, órgão, modalidade)</li>
-            <li><span class="check">✓</span> Ação direta: “Abrir licitação”</li>
+            <li><span class="check">✓</span> Resultados organizados (prazo, órgão, modalidade)</li>
+            <li><span class="check">✓</span> Clique direto para “Abrir licitação”</li>
+            <li><span class="check">✓</span> Varios tipos de filtros inclusive palavras mais buscadas”</li>
           </ul>
         </div>
 
         <div class="page">
-          <h4>Página 2 — Como isso ajuda sua empresa</h4>
+          <h4> Como isso ajuda sua empresa</h4>
           <p>
-            Você ganha tempo e evita perder prazos. O sistema facilita a rotina comercial: encontrar oportunidades, filtrar as melhores
-            e partir para a proposta com mais segurança e agilidade.
+            Você ganha tempo e evita perder prazos. O sistema facilita a rotina comercial: encontrar oportunidades,
+            filtrar as melhores e partir para a proposta com mais segurança e agilidade.
           </p>
           <ul class="bul">
             <li><span class="check">✓</span> Menos tempo procurando, mais tempo preparando proposta</li>
